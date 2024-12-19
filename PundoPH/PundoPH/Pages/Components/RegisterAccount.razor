@@ -1,0 +1,39 @@
+﻿@using PundoPH.Data
+@using PundoPH.Model
+@using System.Text.Json
+@inject Data.AppDbContext DbContext
+@inject NavigationManager navigationManager
+@inject UserService UserService
+@inject IJSRuntime JSRuntime
+
+<EditForm Model="@user" OnValidSubmit="SaveCreateUser" class="col-6">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText id="firstname" placeHolder="Firstname" @bind-Value="user.FirstName" class="form-control mb-2" />
+    <InputText id="lastname" placeHolder="Lastname" @bind-Value="user.LastName" class="form-control mb-2" />
+    <InputText id="password" placeHolder="Password" type="password" @bind-Value="user.Password" class="form-control mb-2" />
+    <InputText id="email" placeHolder="Email" type="email" @bind-Value="user.Email" class="form-control mb-2" />
+
+    <button type="submit" class="btn btn-primary">Create User</button>
+</EditForm>
+
+@code {
+    public User user = new();
+    public string errorMessage { get; set; }
+
+    private async Task SaveCreateUser()
+    {
+        string result = await UserService.SaveCreateUser(user);
+        if (string.IsNullOrEmpty(result) || result == "")
+        {
+            var u = UserService.GetUser(user.FirstName, user.Password);
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
+
+            navigationManager.NavigateTo($"/Index/{user.Id}");
+        }
+        else 
+        {
+            errorMessage = result;
+        }
+    }
+}
