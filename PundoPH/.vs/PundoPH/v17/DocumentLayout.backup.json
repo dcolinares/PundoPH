@@ -3,44 +3,68 @@
   "WorkspaceRootPath": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\logincomponents.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\logincomponents.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\editcontribution.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\editcontribution.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\registeraccount.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\registeraccount.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\addcontribution.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\addcontribution.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\model\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\model\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\data\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\data\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\data\\contributionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\data\\contributionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\fetchdata.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\fetchdata.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\model\\contribution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\model\\contribution.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\transaction.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\transaction.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\data\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\data\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\model\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\model\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\registeraccount.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\registeraccount.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\components\\logincomponents.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\components\\logincomponents.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|e:\\workspace\\pundoph\\pundoph\\pundoph\\pundoph\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2214FB02-FAC7-4453-82C1-83CBAA3E5B05}|PundoPH\\PundoPH.csproj|solutionrelative:pundoph\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,37 +74,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Program.cs",
-              "RelativeDocumentMoniker": "PundoPH\\Program.cs",
-              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Program.cs",
-              "RelativeToolTip": "PundoPH\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAqAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "EditContribution.razor",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\EditContribution.razor",
+              "RelativeDocumentMoniker": "PundoPH\\Pages\\Components\\EditContribution.razor",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\EditContribution.razor",
+              "RelativeToolTip": "PundoPH\\Pages\\Components\\EditContribution.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-06T10:43:17.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Contribution.cs",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\Contribution.cs",
+              "RelativeDocumentMoniker": "PundoPH\\Model\\Contribution.cs",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\Contribution.cs",
+              "RelativeToolTip": "PundoPH\\Model\\Contribution.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T06:42:12.745Z",
+              "WhenOpened": "2025-01-06T09:50:12.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContributionService.cs",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\ContributionService.cs",
+              "RelativeDocumentMoniker": "PundoPH\\Data\\ContributionService.cs",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\ContributionService.cs",
+              "RelativeToolTip": "PundoPH\\Data\\ContributionService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwDgAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T09:23:29.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddContribution.razor",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\AddContribution.razor",
+              "RelativeDocumentMoniker": "PundoPH\\Pages\\Components\\AddContribution.razor",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\AddContribution.razor",
+              "RelativeToolTip": "PundoPH\\Pages\\Components\\AddContribution.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-06T08:02:00.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Transaction.razor",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Transaction.razor",
+              "RelativeDocumentMoniker": "PundoPH\\Pages\\Transaction.razor",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Transaction.razor",
+              "RelativeToolTip": "PundoPH\\Pages\\Transaction.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-06T07:35:01.283Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\UserService.cs",
-              "RelativeDocumentMoniker": "PundoPH\\Data\\UserService.cs",
-              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\UserService.cs",
-              "RelativeToolTip": "PundoPH\\Data\\UserService.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAwEcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:36:14.392Z",
+              "Title": "FetchData.razor",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\FetchData.razor",
+              "RelativeDocumentMoniker": "PundoPH\\Pages\\FetchData.razor",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\FetchData.razor",
+              "RelativeToolTip": "PundoPH\\Pages\\FetchData.razor",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACkAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-06T07:32:14.326Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
+              "Title": "Profile.razor",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Profile.razor",
+              "RelativeDocumentMoniker": "PundoPH\\Pages\\Profile.razor",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Profile.razor",
+              "RelativeToolTip": "PundoPH\\Pages\\Profile.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-19T11:24:44.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Register.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Register.razor",
               "RelativeDocumentMoniker": "PundoPH\\Pages\\Register.razor",
@@ -93,71 +182,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "RegisterAccount.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\RegisterAccount.razor",
               "RelativeDocumentMoniker": "PundoPH\\Pages\\Components\\RegisterAccount.razor",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\RegisterAccount.razor",
               "RelativeToolTip": "PundoPH\\Pages\\Components\\RegisterAccount.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-17T10:43:38.613Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\User.cs",
               "RelativeDocumentMoniker": "PundoPH\\Model\\User.cs",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\User.cs",
               "RelativeToolTip": "PundoPH\\Model\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T10:06:20.636Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Shared\\NavMenu.razor",
               "RelativeDocumentMoniker": "PundoPH\\Shared\\NavMenu.razor",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Shared\\NavMenu.razor",
               "RelativeToolTip": "PundoPH\\Shared\\NavMenu.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAUwCkAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-17T03:25:55.977Z"
+              "WhenOpened": "2024-12-17T03:25:55.977Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 12,
               "Title": "LoginComponents.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\LoginComponents.razor",
               "RelativeDocumentMoniker": "PundoPH\\Pages\\Components\\LoginComponents.razor",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Components\\LoginComponents.razor",
               "RelativeToolTip": "PundoPH\\Pages\\Components\\LoginComponents.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-17T03:13:23.77Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "LoginModel.cs",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\LoginModel.cs",
               "RelativeDocumentMoniker": "PundoPH\\Model\\LoginModel.cs",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Model\\LoginModel.cs",
               "RelativeToolTip": "PundoPH\\Model\\LoginModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-17T03:10:39.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Login.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Login.razor",
               "RelativeDocumentMoniker": "PundoPH\\Pages\\Login.razor",
@@ -170,15 +260,34 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "Index.razor",
               "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Index.razor",
               "RelativeDocumentMoniker": "PundoPH\\Pages\\Index.razor",
               "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Pages\\Index.razor",
               "RelativeToolTip": "PundoPH\\Pages\\Index.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-16T05:43:24.712Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\UserService.cs",
+              "RelativeDocumentMoniker": "PundoPH\\Data\\UserService.cs",
+              "ToolTip": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\Data\\UserService.cs",
+              "RelativeToolTip": "PundoPH\\Data\\UserService.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAIwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-06T09:53:53.953Z",
               "EditorCaption": ""
             }
           ]

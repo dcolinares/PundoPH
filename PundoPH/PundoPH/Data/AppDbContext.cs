@@ -9,5 +9,6 @@ namespace PundoPH.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; } // Example entity
+        public DbSet<Contribution> Contributions { get; set; }
     }
 }

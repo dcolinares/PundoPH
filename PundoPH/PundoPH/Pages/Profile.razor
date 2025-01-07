@@ -1,0 +1,28 @@
+﻿@page "/Profile"
+@using System.Text.Json
+@using PundoPH.Model
+@inject IJSRuntime JSRuntime
+
+<h3>Profile</h3>
+First Name :
+<label class="mb-2">@CurrentUser?.FirstName</label>
+Last Name :
+<label class="mb-2">@CurrentUser?.LastName</label>
+Email :
+<label class="mb-2">@CurrentUser?.Email</label>
+
+@code {
+    [Parameter]
+    public string UserID { get; set; }
+    private User? CurrentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+
+        if (!string.IsNullOrEmpty(userData))
+        {
+            CurrentUser = JsonSerializer.Deserialize<User>(userData);
+        }
+    }
+}

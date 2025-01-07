@@ -78,5 +78,7 @@ namespace PundoPH.Data
 
             return result;
         }
+
+        public User? CurrentUser { get; set; }
     }
 }

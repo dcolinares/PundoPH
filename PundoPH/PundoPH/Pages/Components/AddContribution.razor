@@ -1,0 +1,48 @@
+﻿@using PundoPH.Model
+@using System.Text.Json
+@using PundoPH.Data
+@inject IJSRuntime JSRuntime
+@inject UserService UserService
+@inject ContributionService ContributionService
+@inject NavigationManager Navigation
+
+
+@page "/AddContribution"
+
+<h3>AddContribution | @UserService.CurrentUser.FirstName | @UserService.CurrentUser.Id</h3>
+
+<EditForm Model="contribution" OnValidSubmit="SaveContribution" class="col-6">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText id="name" placeholder="Name" @bind-Value="contribution.Name" class="form-control mb-3"/>
+    <InputText id="description" placeholder="Description" @bind-Value="contribution.Description" class="form-control mb-3" />
+    <InputText id="amount" placeholder="Amount" @bind-Value="AmountString" class="form-control mb-3" />
+    <button id="add" type="submit" class="btn btn-primary">Add</button>
+</EditForm> 
+
+@code {
+    public Contribution contribution = new();
+
+    public string AmountString
+    {
+        get => contribution.Amount.ToString();
+        set 
+        {
+            if (int.TryParse(value, out var amount))
+            {
+                contribution.Amount = amount;
+            }
+        }
+    }
+
+    public async Task SaveContribution()
+    {
+        contribution.UserName = UserService.CurrentUser.FirstName;
+        contribution.UserID = UserService.CurrentUser.Id;
+        string result = await ContributionService.Save(contribution);
+        if (string.IsNullOrEmpty(result) || result == "")
+        {
+            Navigation.NavigateTo("/fetchdata");
+        }
+    }
+}

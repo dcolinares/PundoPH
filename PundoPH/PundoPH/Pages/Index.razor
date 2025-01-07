@@ -4,8 +4,10 @@
 @using PundoPH.Model;
 @using PundoPH.Pages.Components;
 @using System.Text.Json
+@using PundoPH.Data
 
 @inject IJSRuntime JSRuntime
+@inject UserService UserService
 
 <PageTitle>Index</PageTitle>
 <h1>Hello @CurrentUser?.FirstName , welcome to the world!</h1>
@@ -30,7 +32,7 @@ Welcome to your new app.
 
         if (!string.IsNullOrEmpty(userData))
         {
-            CurrentUser = JsonSerializer.Deserialize<User>(userData);
+            UserService.CurrentUser = JsonSerializer.Deserialize<User>(userData);
         }
     }
 }

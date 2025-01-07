@@ -1,15 +1,19 @@
-﻿@page "/fetchdata"
+﻿@using PundoPH.Model
+@page "/fetchdata"
 
-<PageTitle>Weather forecast</PageTitle>
+<PageTitle>Donation list for chapel</PageTitle>
 
 @using PundoPH.Data
-@inject WeatherForecastService ForecastService
+@inject ContributionService ContributionService
+@* @inject WeatherForecastService ForecastService *@
 
-<h1>Weather forecast</h1>
+<h1>Donation list for chapel</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
+<a href="/AddContribution">Add Contribution</a>
+
+@if (contribution == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -18,20 +22,24 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Transacted by</th>
+                <td></td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var c in contribution)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@c.ContributionID</td>
+                    <td>@c.Name</td>
+                    <td>@c.Description</td>
+                    <td>@c.Amount</td>
+                    <td>@c.UserName</td>
+                    <td><a href="/EditContribution/@c.ContributionID"> Edit </a></td>
                 </tr>
             }
         </tbody>
@@ -39,10 +47,11 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    // private WeatherForecast[]? forecasts;
+        private List<Contribution>? contribution;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
     }
 }
