@@ -10,5 +10,6 @@ namespace PundoPH.Data
 
         public DbSet<User> Users { get; set; } // Example entity
         public DbSet<Contribution> Contributions { get; set; }
+        public DbSet<WithdrawModel> Withdraws { get; set; }
     }
 }

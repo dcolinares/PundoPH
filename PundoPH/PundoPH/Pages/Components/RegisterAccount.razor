@@ -6,7 +6,7 @@
 @inject UserService UserService
 @inject IJSRuntime JSRuntime
 
-<EditForm Model="@user" OnValidSubmit="SaveCreateUser" class="col-6">
+<EditForm Model="@user" OnValidSubmit="SaveCreateUser" class="col-12">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText id="firstname" placeHolder="Firstname" @bind-Value="user.FirstName" class="form-control mb-2" />
@@ -15,6 +15,7 @@
     <InputText id="email" placeHolder="Email" type="email" @bind-Value="user.Email" class="form-control mb-2" />
 
     <button type="submit" class="btn btn-primary">Create User</button>
+    <a id="back" class="btn btn-primary" href="/">Back</a>
 </EditForm>
 
 @code {
@@ -28,6 +29,7 @@
         {
             var u = UserService.GetUser(user.FirstName, user.Password);
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", u.Token);
 
             navigationManager.NavigateTo($"/Index/{user.Id}");
         }

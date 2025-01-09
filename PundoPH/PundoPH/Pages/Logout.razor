@@ -1,0 +1,19 @@
+﻿@page "/logout"
+@using PundoPH.Data
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject UserService UserService
+@inject ContributionService ContributionService
+
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem","currentUser");
+        await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "Token");
+        UserService.CurrentUser = null;
+        ContributionService.Contribution = null;
+        NavigationManager.NavigateTo("/");
+    }
+}

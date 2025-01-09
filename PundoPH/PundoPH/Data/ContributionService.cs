@@ -43,9 +43,25 @@ namespace PundoPH.Data
             return resutl;
         }
 
+        public async Task<string> Delete(int contributionID)
+        {
+            string resutl = "";
+            try
+            {
+                Contribution = _appDbContext.Contributions.FirstOrDefault(x => x.ContributionID.Equals(contributionID));
+                _appDbContext.Contributions.Remove(Contribution);
+                await _appDbContext.SaveChangesAsync();
+            } catch (Exception ex)
+            {
+                resutl = ex.Message;
+            }
+
+            return resutl;
+        }
+
         public async Task<List<Contribution>> GetContribution()
         {
-            var contribution = _appDbContext.Contributions.ToList();
+            var contribution = _appDbContext.Contributions.OrderByDescending(x=>x.ContributionID).ToList();
             return (contribution);
         }
 

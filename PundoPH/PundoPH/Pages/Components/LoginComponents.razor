@@ -6,7 +6,7 @@
 @inject IJSRuntime JSRuntime
 @inject UserService UserService
 
-<EditForm Model="loginModel" class="col-3">
+<EditForm Model="loginModel" class="col-12">
     <InputText class="form-control mb-2" placeHolder="UserName" @bind-Value="@loginModel.UserName"></InputText>
     <InputText type="password" class="form-control" placeHolder="Password" @bind-Value="@loginModel.Password"></InputText>
 </EditForm>
@@ -30,16 +30,13 @@
         var user = UserService.GetUser(loginModel.UserName, loginModel.Password);
         if (user != null)
         {
-            // loginModel.UserID = 1;
-            // await loginModel.IsLoginSucessful.InvokeAsync(true);
-
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(user));
-            
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", user.Token);
             navigationManager.NavigateTo($"/Index/{user.Id}");
         }
         else 
         {
-            ErrorMessage = "Invalid Username, please input valid Username!";
+            ErrorMessage = "Invalid Username and Password, please input valid Username and Password!";
         }
 
     }

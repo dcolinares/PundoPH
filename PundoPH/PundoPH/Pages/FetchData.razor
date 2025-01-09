@@ -1,57 +1,144 @@
-﻿@using PundoPH.Model
-@page "/fetchdata"
-
-<PageTitle>Donation list for chapel</PageTitle>
-
+﻿@page "/fetchdata"
+@using PundoPH.Model
+@using PundoPH.Helper
 @using PundoPH.Data
 @inject ContributionService ContributionService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@inject MessageHelper Message 
+@inject UserService UserService
 @* @inject WeatherForecastService ForecastService *@
 
-<h1>Donation list for chapel</h1>
+<div class="card p-2 bg-light mb-3">
+    <PageTitle>Donation list for chapel</PageTitle>
 
-<p>This component demonstrates fetching data from a service.</p>
+    <h1>Donation list for chapel</h1>
 
-<a href="/AddContribution">Add Contribution</a>
+    <p>This component demonstrates fetching data from a service.</p>
 
-@if (contribution == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Transacted by</th>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var c in contribution)
-            {
-                <tr>
-                    <td>@c.ContributionID</td>
-                    <td>@c.Name</td>
-                    <td>@c.Description</td>
-                    <td>@c.Amount</td>
-                    <td>@c.UserName</td>
-                    <td><a href="/EditContribution/@c.ContributionID"> Edit </a></td>
+    <div class="col p-2">
+        <a class="p-2" href="/AddContribution">Add Contribution</a>
+        <a class="p-2" href="/Withdraw/@UserService.CurrentUser.Id">Withdraw Money</a>
+    </div>
+    
+</div>
+
+
+<div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
+    @* <input type="text" placeholder="Search by Name" @bind="seachName" @onkeyup="()=>searchByName(seachName)" class="form-control" /> *@
+    <input type="text" placeholder="Search by Name or Date" @bind="seachName" @bind:event="oninput" class="form-control" />
+</div>
+
+<div class="p-2 bg-opacity-10">
+    @if (contribution == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr class="bg-light">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Transacted by</th>
+                    <th>Transaction Date</th>
+                    <td></td>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var c in contribution)
+                {
+                    <tr>
+                        <td>@c.ContributionID</td>
+                        <td>@c.Name</td>
+                        <td>@c.Description</td>
+                        <td>@c.Amount</td>
+                        <td>@c.UserName</td>
+                        <td>@c.DateReceived.ToShortDateString()</td>
+                        <td>
+                            <span href="" class="oi oi-pencil pointer-event" @onclick="()=>EditContribution(c.ContributionID)"></span>
+                            <span href="/Contribution/Delete" class="oi oi-delete pointer-event" @onclick="()=>DeleteContribution(c.ContributionID)"></span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
+<style>
+    .oi-pencil {
+    color: deepskyblue;
+    cursor: pointer;
+    }
+    .oi-delete{
+    color: deeppink;
+    cursor: pointer;
+    }
+</style>
 
 @code {
     // private WeatherForecast[]? forecasts;
-        private List<Contribution>? contribution;
-
+    private List<Contribution>? contribution;
+    private string _searchName = string.Empty;
+    private string seachName
+    {
+        get => _searchName;
+        set
+        {
+            if (_searchName != value)  // Check if value has changed
+            {
+                _searchName = value;
+                searchByName(_searchName);  // Trigger search
+            }
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
-        contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
+        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (!string.IsNullOrEmpty(token))
+        {
+            contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    public void EditContribution(int contributionID)
+    {
+        NavigationManager.NavigateTo($"/EditContribution/{contributionID}");
+    }
+
+    public async void DeleteContribution(int contributionID)
+    {
+        var confirmed = await Message.MessageBox("confirm", $"Are you sure you want to delete this contribution with contributionID of {contributionID} ?");
+        if (confirmed)
+        {
+            await ContributionService.Delete(contributionID);
+            contribution = await ContributionService.GetContribution();
+
+            //Trigger UI to refresh
+            StateHasChanged();
+        }
+    }
+
+    private async void searchByName(string searchName)
+    {
+        if (seachName.Length > 0)
+        {
+            contribution = contribution.Where(c => c.Name.Contains(searchName) || c.DateReceived.ToShortDateString().Contains(searchName)).ToList();
+        }
+        else
+        {
+            contribution = await ContributionService.GetContribution();
+        }
+        //Trigger UI to refresh
+        StateHasChanged();
     }
 }

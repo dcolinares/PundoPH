@@ -1,7 +1,38 @@
 ﻿@page "/"
-<h3>Login</h3>
+<div class="overlay"></div>
+<div class="login-container">
+    <h3>Login</h3>
 
-<PundoPH.Pages.Components.LoginComponents></PundoPH.Pages.Components.LoginComponents>
+    <PundoPH.Pages.Components.LoginComponents></PundoPH.Pages.Components.LoginComponents>
+</div>
+<style>
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        backdrop-filter: blur(10px); /* Apply blur effect */
+        z-index: 1040; /* Overlay above other content */
+        pointer-events: none; /* Disable interactions with the background */
+    }
+
+    /* Centered Login Form */
+    .login-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1050; /* Ensure the form is above the overlay */
+        max-width: 400px;
+        width: 100%;
+    }
+</style>
 @code {
     
 }

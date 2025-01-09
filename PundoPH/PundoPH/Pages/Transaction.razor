@@ -1,12 +1,20 @@
 ﻿@page "/Transaction"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager navigation
 
-<PundoPH.Pages.Components.AddContribution/>
+@if(!string.IsNullOrEmpty(token))
+{
+    <PundoPH.Pages.Components.AddContribution/>
+}
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    private string token = "";
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (string.IsNullOrEmpty(token))
+        {
+            navigation.NavigateTo("/");
+        }
     }
 }

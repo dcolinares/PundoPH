@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager navigation
 
 <PageTitle>PundoPH</PageTitle>
 
@@ -8,8 +9,10 @@
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div class="top-row px-4 navbar-dark">
+            @*  <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
+            <span class="oi oi-person profile p-2" @onclick="profileClick"></span>
+            <span class="oi oi-bell"></span>
         </div>
 
         <article class="content px-4">
@@ -17,3 +20,30 @@
         </article>
     </main>
 </div>
+
+<style>
+    .profile {
+    color:deepskyblue;
+    cursor:pointer;
+
+    }
+
+    .profile:hover {
+        color:darkgoldenrod;
+    }
+
+    .oi-bell{
+    cursor: pointer;
+    }
+
+    .oi-bell:hover {
+        color:dimgrey;
+    }
+</style>
+
+@code{
+    public void profileClick()
+    {
+        navigation.NavigateTo("/profile");
+    }
+}

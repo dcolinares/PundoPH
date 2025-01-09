@@ -5,34 +5,39 @@
 @using PundoPH.Pages.Components;
 @using System.Text.Json
 @using PundoPH.Data
+@using PundoPH.Helper
 
 @inject IJSRuntime JSRuntime
 @inject UserService UserService
+@inject NavigationManager NavigationManager
+@inject LoginHelper LoginHelper
+
 
 <PageTitle>Index</PageTitle>
-<h1>Hello @CurrentUser?.FirstName , welcome to the world!</h1>
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h1>Hello @CurrentUser?.FirstName , welcome to PundoPH!</h1>
+Welcome to your online "Pundo" savings.
 
 @code{
     [Parameter]
     public string UserID { get; set; }
     private User? CurrentUser;
 
-    // protected override void OnInitialized()
-    // {
-    //     base.OnInitialized();
-    //     UserID = loginModel.UserID.ToString();
-    // }
-
     protected override async Task OnInitializedAsync()
-    { 
-        string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
-
-        if (!string.IsNullOrEmpty(userData))
+    {
+        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (!string.IsNullOrEmpty(token))
         {
-            UserService.CurrentUser = JsonSerializer.Deserialize<User>(userData);
+            string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+
+            if (!string.IsNullOrEmpty(userData))
+            {
+                UserService.CurrentUser = JsonSerializer.Deserialize<User>(userData);
+                CurrentUser = UserService.CurrentUser;
+            }
+        }
+        else 
+        {
+            NavigationManager.NavigateTo("/");
         }
     }
 }

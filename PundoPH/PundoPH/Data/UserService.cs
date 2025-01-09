@@ -29,7 +29,10 @@ namespace PundoPH.Data
             //{
             //    return user = new User();
             //}
-            UpdateUserToken(user);
+            if (user != null)
+            {
+                UpdateUserToken(user);
+            }
             return user;
         }
 

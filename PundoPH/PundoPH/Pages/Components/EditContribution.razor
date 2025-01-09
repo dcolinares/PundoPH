@@ -1,27 +1,58 @@
 ﻿@using PundoPH.Data
 @using PundoPH.Model
 @inject ContributionService ContributionService
+@inject NavigationManager NavigationManager
 
 @page "/EditContribution/{contributionID}"
 
 <h3>EditContribution</h3>
 
-<EditForm Model="contribution" class="col-6">
+<EditForm Model="contribution" OnValidSubmit="UpdateContribution" class="col-6">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <InputText id="name" placeholder="Name" @bind="contribution.Name" class="form-control mb-3" />
-    <InputText id="description" placeholder="Description" @bind="contribution.Description" class="form-control mb-3" />
-    <InputText id="amount" placeholder="Amount" @bind="AmountString" class="form-control mb-3" />
-    <button id="add" type="submit" class="btn btn-primary">Add</button>
+    <InputText id="name" placeholder="Name" @bind-Value="contribution.Name" class="form-control mb-3" />
+    <InputText id="description" placeholder="Description" @bind-Value="contribution.Description" class="form-control mb-3" />
+    <InputText id="amount" placeholder="Amount" @bind-Value="AmountString" class="form-control mb-3" /> 
+    <label id="errorMessage">@errorMessage</label>
+    <button id="update" type="submit" class="btn btn-primary">Update</button>
+    <a id="back" class="btn btn-primary" href="/fetchdata">Back</a>
 </EditForm>
 
 @code {
     [Parameter]
     public string contributionID { get; set; }
-    public Contribution? contribution;
+    public Contribution? contribution = new();
+    public string errorMessage { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await ContributionService.Get(int.Parse(contributionID));
+        contribution = ContributionService.Contribution;
+    }
+
+    public string AmountString
+    {
+        get => contribution.Amount.ToString();
+        set
+        {
+            if (int.TryParse(value, out var amount))
+            {
+                contribution.Amount = amount;
+            }
+        }
+    }
+
+    public async Task UpdateContribution()
+    {
+        string result = await ContributionService.Update(contribution);
+
+        if (string.IsNullOrEmpty(result) || result == "")
+        {
+            NavigationManager.NavigateTo("/fetchdata");
+        }
+        else
+        {
+            errorMessage = result;
+        }
     }
 }

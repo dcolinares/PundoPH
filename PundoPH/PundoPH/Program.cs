@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using PundoPH.Data;
+using PundoPH.Helper;
 using PundoPH.Model;
 using System;
 
@@ -14,6 +15,9 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<LoginModel>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ContributionService>();
+builder.Services.AddScoped<MessageHelper>();
+builder.Services.AddScoped<LoginHelper>();
+
 
 // Add services to the container
 builder.Services.AddDbContext<AppDbContext>(options =>

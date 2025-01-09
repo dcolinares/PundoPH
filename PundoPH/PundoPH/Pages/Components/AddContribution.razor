@@ -9,7 +9,9 @@
 
 @page "/AddContribution"
 
-<h3>AddContribution | @UserService.CurrentUser.FirstName | @UserService.CurrentUser.Id</h3>
+@if (UserService.CurrentUser != null)
+{ 
+    <h3>AddContribution | @UserService.CurrentUser.FirstName | @UserService.CurrentUser.Id</h3>
 
 <EditForm Model="contribution" OnValidSubmit="SaveContribution" class="col-6">
     <DataAnnotationsValidator />
@@ -19,6 +21,11 @@
     <InputText id="amount" placeholder="Amount" @bind-Value="AmountString" class="form-control mb-3" />
     <button id="add" type="submit" class="btn btn-primary">Add</button>
 </EditForm> 
+}else
+{
+    Navigation.NavigateTo("/");
+}
+
 
 @code {
     public Contribution contribution = new();

@@ -2,6 +2,7 @@
 @using System.Text.Json
 @using PundoPH.Model
 @inject IJSRuntime JSRuntime
+@inject NavigationManager navigation
 
 <h3>Profile</h3>
 First Name :
@@ -18,11 +19,20 @@ Email :
 
     protected override async Task OnInitializedAsync()
     {
-        string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
-
-        if (!string.IsNullOrEmpty(userData))
+        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (!string.IsNullOrEmpty(token))
         {
-            CurrentUser = JsonSerializer.Deserialize<User>(userData);
+            string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+
+            if (!string.IsNullOrEmpty(userData))
+            {
+                CurrentUser = JsonSerializer.Deserialize<User>(userData);
+            }
         }
+        else
+        {
+            navigation.NavigateTo("/");
+        }
+       
     }
 }
