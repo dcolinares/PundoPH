@@ -3,12 +3,14 @@
 @using PundoPH.Helper
 @using PundoPH.Data
 @using PundoPH.Pages.Components
+@using PundoPH.ViewModel
 
 @inject ContributionService ContributionService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 @inject MessageHelper Message 
 @inject UserService UserService
+@inject IWithdrawViewModel Withdraw
 
 <div class="card p-2 bg-light mb-3">
     <PageTitle>Donation list for chapel</PageTitle>
@@ -19,7 +21,7 @@
 
     <div class="col p-2">
         <a class="p-2" href="/AddContribution">Add Contribution</a>
-        <span class="btn btn-primary p-2" @onclick="ShowModal">Withdraw Money</span>
+        <span class="btn btn-primary p-2" @onclick="ShowModal">Disburse Money</span>
     </div>
 
     <PundoPH.Pages.Components.WithdrawComponents @ref="ModalRef" Title="Withdraw" OnClose="HandleModalClose">
@@ -29,7 +31,7 @@
 </div>
 
 <div class="tab-control nav-border">
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs text-primary bg-light" role="tablist">
         <li id="tab1" class="nav-item">
             <span class="nav-link @((activeTab1 == tab1) ? "active" : "")" @onclick="() => SelectTab1(tab1)">Contribution</span> 
         </li>
@@ -89,7 +91,45 @@
         else if (activeTab1 == tab2)
         {
             <div class="tab-pane active">
-                <p>Content for Tab 2 in Tab Control 1.</p>
+                <div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
+                    <input type="text" placeholder="Search by Name or Date" @bind="seachWithdrawName" @bind:event="oninput" class="form-control" />
+                </div>
+
+                <div class="p-2 bg-opacity-10">
+                    @if (withdrawModels == null)
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Reason</th>
+                                    <th>Amount</th>
+                                    <th>UserName</th>
+                                    <th>Transaction Date</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var w in withdrawModels)
+                                {
+                                    <tr>
+                                        <td>@w.WithdrawID</td>
+                                        <td>@w.Name</td>
+                                        <td>@w.Reason</td>
+                                        <td>@w.Amount</td>
+                                        <td>@w.UserName</td>
+                                        <td>@w.WithdrawDate.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </div>
         }
     </div>
@@ -109,18 +149,17 @@
     }
 
     .nav-tabs {
-        border-bottom: 1px solid #ddd;
-        font-size: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
     }
 
     .nav-border {
-        border-bottom: 1px solid #ddd;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
+    @* border-bottom: 1px solid #ddd; *@
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     }
 
     .nav-item .nav-link {
-    border: 1px solid transparent;
     border-radius: 0.25rem;
     }
 
@@ -129,12 +168,12 @@
     border-color: #ddd;
     font-size: 18px;
     }
-}
 </style>
 
 @code {
     // private WeatherForecast[]? forecasts;
     private List<Contribution>? contribution;
+    private List<WithdrawsWithUserModel>? withdrawModels = new();
     private string _searchName = string.Empty;
     private string tab1 = "tab1";
     private string tab2 = "tab2";
@@ -151,12 +190,25 @@
             }
         }
     }
+    private string seachWithdrawName
+    {
+        get => _searchName;
+        set
+        {
+            if (_searchName != value)  // Check if value has changed
+            {
+                _searchName = value;
+                search(_searchName);  // Trigger search
+            }
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         //string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
         if (await ContributionService.GetContribution() != null)
         {
             contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
+            withdrawModels = await Withdraw.GetWithdrawWithUserl();
         }
         else
         {
@@ -196,6 +248,20 @@
         //Trigger UI to refresh
         StateHasChanged();
     }
+    private async void search(string searchName)
+    {
+        if (seachName.Length > 0)
+        {
+            withdrawModels = withdrawModels.Where(c => c.Name.Contains(searchName) || c.WithdrawDate.ToShortDateString().Contains(searchName)).ToList();
+        }
+        else
+        {
+            withdrawModels = await Withdraw.GetWithdrawWithUserl();
+        }
+        //Trigger UI to refresh
+        StateHasChanged();
+    }
+
 
     // Show as a modal
     private WithdrawComponents ModalRef { get; set; }

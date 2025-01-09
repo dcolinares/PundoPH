@@ -1,4 +1,5 @@
-﻿using PundoPH.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using PundoPH.Model;
 
 namespace PundoPH.Data
 {
@@ -25,6 +26,30 @@ namespace PundoPH.Data
             }
 
             return resutl;
+        }
+
+        public async Task<List<WithdrawModel>> Get()
+        {
+            List<WithdrawModel> withdrawModel = new List<WithdrawModel>();
+            withdrawModel = _appDbContext.Withdraws.OrderByDescending(x => x.WithdrawID).ToList();
+            return withdrawModel;
+        }
+
+        public async Task<List<WithdrawsWithUserModel>> GetWithdrawWithUser()
+        {
+            var result = await (from w in _appDbContext.Withdraws
+                                join u in _appDbContext.Users
+                                on w.UserID equals u.Id
+                                select new WithdrawsWithUserModel {
+                                    WithdrawID = w.WithdrawID,
+                                    Name = w.Name,
+                                    Reason = w.Reason,
+                                    Amount = w.Amount,
+                                    UserID = w.UserID,
+                                    WithdrawDate = w.WithdrawDate,
+                                    UserName = u.FirstName,
+                                }).ToListAsync();
+            return result;
         }
     }
 }
