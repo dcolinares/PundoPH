@@ -1,0 +1,134 @@
+﻿@using PundoPH.Model
+@using PundoPH.Data
+@using PundoPH.Helper
+@using System.ComponentModel.DataAnnotations
+@using PundoPH.ViewModel
+
+@inject UserService UserService
+@inject IWithdrawViewModel Withdraw 
+@inject LoginHelper LoginHelper
+@inject NavigationManager navigation
+@inject IJSRuntime JSRuntime
+
+<div class="modal-overlay" style="@OverlayDisplay" @onclick="CloseModal"></div>
+<div class="modal" tabindex="-1" style="@ModalDisplay">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title">@Title</h5>
+                <button type="button" class="btn-close" @onclick="CloseModal"></button>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="withdrawModel" OnValidSubmit="ClickWidraw" >
+                    <InputText id="name" placeholder="Name" @bind-Value="withdrawModel.Name" class="form-control mb-2"/>
+                    <ValidationMessage For="@(() => withdrawModel.Name)" />
+                    <InputText id="reason" placeholder="Reason to withdraw" @bind-Value="withdrawModel.Reason" class="form-control mb-2"/>
+                    <ValidationMessage For="@(() => withdrawModel.Reason)" />
+                    <InputText id="amount" placeholder="0" @bind-Value="AmountString" class="form-control mb-2" />
+                    <ValidationMessage For="@(() => AmountString)" />
+                    <p class="text-danger">@errorMessage</p>
+                    <div class="modal-footer">
+                        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                    </div>
+
+                </EditForm> 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    z-index: 1040; /* Behind the modal */
+    display: none;
+    }
+
+    /* Modal itself */
+    .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050; /* Above the overlay */
+    width: 100%;
+    max-width: 500px;
+    }
+
+    .modal-dialog {
+    margin: 0;
+    width: 100%;
+    }
+</style>
+
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    public WithdrawModel withdrawModel = new();
+
+    private string ModalDisplay { get; set; } = "display:none;";
+    private string OverlayDisplay { get; set; } = "display:none;";
+    private string errorMessage { get; set; }
+
+    public void OpenModal()
+    {
+        ModalDisplay = "display:block;";
+        OverlayDisplay = "display:block;";
+        StateHasChanged();
+    }
+
+    private async Task CloseModal()
+    {
+        ModalDisplay = "display:none;";
+        OverlayDisplay = "display:none;";
+        await OnClose.InvokeAsync();
+        StateHasChanged();
+    }
+
+    public string AmountString
+    {
+        get => withdrawModel.Amount.ToString();
+        set
+        {
+            if (decimal.TryParse(value, out var amount))
+            {
+                withdrawModel.Amount = amount;
+            }
+        }
+    }
+
+    public async Task ClickWidraw()
+    {
+        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        bool hasToken = await LoginHelper.IsAuthenticated(token);
+        if (hasToken)
+        {
+            withdrawModel.UserID = UserService.CurrentUser.Id;
+            string result = await Withdraw.Save(withdrawModel);
+            if (!string.IsNullOrEmpty(result))
+            {
+                errorMessage = result;
+            }
+            else
+            {
+                withdrawModel = new WithdrawModel();
+                CloseModal();
+            }
+        }else
+        {
+            navigation.NavigateTo("/");
+        }
+        
+        
+    }
+}

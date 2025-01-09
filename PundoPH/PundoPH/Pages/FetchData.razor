@@ -2,12 +2,13 @@
 @using PundoPH.Model
 @using PundoPH.Helper
 @using PundoPH.Data
+@using PundoPH.Pages.Components
+
 @inject ContributionService ContributionService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 @inject MessageHelper Message 
 @inject UserService UserService
-@* @inject WeatherForecastService ForecastService *@
 
 <div class="card p-2 bg-light mb-3">
     <PageTitle>Donation list for chapel</PageTitle>
@@ -18,56 +19,83 @@
 
     <div class="col p-2">
         <a class="p-2" href="/AddContribution">Add Contribution</a>
-        <a class="p-2" href="/Withdraw/@UserService.CurrentUser.Id">Withdraw Money</a>
+        <span class="btn btn-primary p-2" @onclick="ShowModal">Withdraw Money</span>
     </div>
-    
+
+    <PundoPH.Pages.Components.WithdrawComponents @ref="ModalRef" Title="Withdraw" OnClose="HandleModalClose">
+        <p>This is a sample modal content.</p>
+    </PundoPH.Pages.Components.WithdrawComponents>
+
+</div>
+
+<div class="tab-control nav-border">
+    <ul class="nav nav-tabs" role="tablist">
+        <li id="tab1" class="nav-item">
+            <span class="nav-link @((activeTab1 == tab1) ? "active" : "")" @onclick="() => SelectTab1(tab1)">Contribution</span> 
+        </li>
+        <li id="tab2" class="nav-item">
+            <span class="nav-link @((activeTab1 == tab2) ? "active" : "")" @onclick="() => SelectTab1(tab2)">Disburse Money</span> 
+        </li>
+    </ul>
+    <div class="tab-content p-2">
+        @if (activeTab1 == tab1)
+        {
+            <div class="tab-pane active">
+                <div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
+                    <input type="text" placeholder="Search by Name or Date" @bind="seachName" @bind:event="oninput" class="form-control" />
+                </div>
+
+                <div class="p-2 bg-opacity-10">
+                    @if (contribution == null)
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Transacted by</th>
+                                    <th>Transaction Date</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in contribution)
+                                {
+                                    <tr>
+                                        <td>@c.ContributionID</td>
+                                        <td>@c.Name</td>
+                                        <td>@c.Description</td>
+                                        <td>@c.Amount</td>
+                                        <td>@c.UserName</td>
+                                        <td>@c.DateReceived.ToShortDateString()</td>
+                                        <td>
+                                            <span href="" class="oi oi-pencil pointer-event" @onclick="()=>EditContribution(c.ContributionID)"></span>
+                                            <span href="/Contribution/Delete" class="oi oi-delete pointer-event" @onclick="()=>DeleteContribution(c.ContributionID)"></span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        }
+        else if (activeTab1 == tab2)
+        {
+            <div class="tab-pane active">
+                <p>Content for Tab 2 in Tab Control 1.</p>
+            </div>
+        }
+    </div>
 </div>
 
 
-<div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
-    @* <input type="text" placeholder="Search by Name" @bind="seachName" @onkeyup="()=>searchByName(seachName)" class="form-control" /> *@
-    <input type="text" placeholder="Search by Name or Date" @bind="seachName" @bind:event="oninput" class="form-control" />
-</div>
-
-<div class="p-2 bg-opacity-10">
-    @if (contribution == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <table class="table">
-            <thead>
-                <tr class="bg-light">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Transacted by</th>
-                    <th>Transaction Date</th>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var c in contribution)
-                {
-                    <tr>
-                        <td>@c.ContributionID</td>
-                        <td>@c.Name</td>
-                        <td>@c.Description</td>
-                        <td>@c.Amount</td>
-                        <td>@c.UserName</td>
-                        <td>@c.DateReceived.ToShortDateString()</td>
-                        <td>
-                            <span href="" class="oi oi-pencil pointer-event" @onclick="()=>EditContribution(c.ContributionID)"></span>
-                            <span href="/Contribution/Delete" class="oi oi-delete pointer-event" @onclick="()=>DeleteContribution(c.ContributionID)"></span>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-</div>
 
 
 <style>
@@ -79,12 +107,38 @@
     color: deeppink;
     cursor: pointer;
     }
+
+    .nav-tabs {
+        border-bottom: 1px solid #ddd;
+        font-size: 15px;
+    }
+
+    .nav-border {
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+
+    .nav-item .nav-link {
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    }
+
+    .nav-link.active {
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    font-size: 18px;
+    }
+}
 </style>
 
 @code {
     // private WeatherForecast[]? forecasts;
     private List<Contribution>? contribution;
     private string _searchName = string.Empty;
+    private string tab1 = "tab1";
+    private string tab2 = "tab2";
+    private string activeTab1 = "Tab1";
     private string seachName
     {
         get => _searchName;
@@ -99,8 +153,8 @@
     }
     protected override async Task OnInitializedAsync()
     {
-        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
-        if (!string.IsNullOrEmpty(token))
+        //string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (await ContributionService.GetContribution() != null)
         {
             contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
         }
@@ -108,6 +162,7 @@
         {
             NavigationManager.NavigateTo("/");
         }
+        activeTab1 = tab1;
     }
 
     public void EditContribution(int contributionID)
@@ -140,5 +195,24 @@
         }
         //Trigger UI to refresh
         StateHasChanged();
+    }
+
+    // Show as a modal
+    private WithdrawComponents ModalRef { get; set; }
+
+    private void ShowModal()
+    {
+        ModalRef.OpenModal();
+    }
+
+    private void HandleModalClose()
+    {
+        Console.WriteLine("Modal closed");
+    }
+
+    //Create tab control
+    private void SelectTab1(string tab)
+    {
+        activeTab1 = tab;
     }
 }

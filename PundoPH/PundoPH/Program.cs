@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PundoPH.Data;
 using PundoPH.Helper;
 using PundoPH.Model;
+using PundoPH.ViewModel;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,8 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ContributionService>();
 builder.Services.AddScoped<MessageHelper>();
 builder.Services.AddScoped<LoginHelper>();
-
+builder.Services.AddScoped<WithdrawService>();
+builder.Services.AddScoped<IWithdrawViewModel, WithdrawViewModel>();
 
 // Add services to the container
 builder.Services.AddDbContext<AppDbContext>(options =>

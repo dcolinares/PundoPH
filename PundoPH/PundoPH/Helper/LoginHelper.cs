@@ -11,9 +11,9 @@ namespace PundoPH.Helper
             _jSRuntime = jSRuntime;
         }
 
-        public async Task<bool> IsAuthenticated()
+        public async Task<bool> IsAuthenticated(string token)
         {
-            var hasToken = await _jSRuntime.InvokeAsync<bool>("sessionStorage.getItem", "Token");
+            var hasToken = !string.IsNullOrEmpty(token);
             return hasToken;
         }
     }
