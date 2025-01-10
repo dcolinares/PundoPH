@@ -16,4 +16,5 @@ namespace PundoPH.Model
         public string UserName { get; set; }
         public int UserID { get; set; }
     }
+
 }

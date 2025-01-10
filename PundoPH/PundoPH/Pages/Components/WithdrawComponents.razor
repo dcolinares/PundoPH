@@ -1,10 +1,10 @@
 ﻿@using PundoPH.Model
-@using PundoPH.Data
+@using PundoPH.Service
 @using PundoPH.Helper
 @using System.ComponentModel.DataAnnotations
 @using PundoPH.ViewModel
 
-@inject UserService UserService
+@inject Service Service
 @inject IWithdrawViewModel Withdraw 
 @inject LoginHelper LoginHelper
 @inject NavigationManager navigation
@@ -113,7 +113,7 @@
         bool hasToken = await LoginHelper.IsAuthenticated(token);
         if (hasToken)
         {
-            withdrawModel.UserID = UserService.CurrentUser.Id;
+            withdrawModel.UserID = Service.User.CurrentUser.Id;
             string result = await Withdraw.Save(withdrawModel);
             if (!string.IsNullOrEmpty(result))
             {

@@ -1,9 +1,8 @@
 ﻿@page "/logout"
-@using PundoPH.Data
+@using PundoPH.Service
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
-@inject UserService UserService
-@inject ContributionService ContributionService
+@inject Service Service
 
 
 
@@ -12,8 +11,8 @@
     {
         await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem","currentUser");
         await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "Token");
-        UserService.CurrentUser = null;
-        ContributionService.Contribution = null;
+        Service.User.CurrentUser = null;
+        Service.Contribution.Contribution = null;
         NavigationManager.NavigateTo("/");
     }
 }

@@ -51,5 +51,18 @@ namespace PundoPH.Data
                                 }).ToListAsync();
             return result;
         }
+
+        public async Task<ContributionAndDisbursement> GetTotalContributionAndDisbursement()
+        {
+            decimal totalContribution = _appDbContext.Contributions.Sum(c => c.Amount);
+            decimal totalDisbursement = _appDbContext.Withdraws.Sum(w => w.Amount);
+            var result = new ContributionAndDisbursement() {
+                TotalContribution = totalContribution,
+                TotalDisbursement = totalDisbursement,
+                AvailabelBalance = (totalContribution - totalDisbursement)
+
+            };
+            return result;
+        }
     }
 }

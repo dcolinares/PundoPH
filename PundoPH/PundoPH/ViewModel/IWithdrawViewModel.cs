@@ -7,5 +7,6 @@ namespace PundoPH.ViewModel
         Task<string> Save(WithdrawModel withdrawModel);
         Task<List<WithdrawModel>> Get();
         Task<List<WithdrawsWithUserModel>> GetWithdrawWithUserl();
+        Task<ContributionAndDisbursement> GetTotalContributionAndDisbursement();
     }
 }

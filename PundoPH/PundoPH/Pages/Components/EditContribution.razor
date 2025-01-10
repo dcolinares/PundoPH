@@ -1,6 +1,6 @@
-﻿@using PundoPH.Data
+﻿@using PundoPH.Service
 @using PundoPH.Model
-@inject ContributionService ContributionService
+@inject Service Service
 @inject NavigationManager NavigationManager
 
 @page "/EditContribution/{contributionID}"
@@ -26,8 +26,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await ContributionService.Get(int.Parse(contributionID));
-        contribution = ContributionService.Contribution;
+        await Service.Contribution.Get(int.Parse(contributionID));
+        contribution = Service.Contribution.Contribution;
     }
 
     public string AmountString
@@ -44,7 +44,7 @@
 
     public async Task UpdateContribution()
     {
-        string result = await ContributionService.Update(contribution);
+        string result = await Service.Contribution.Update(contribution);
 
         if (string.IsNullOrEmpty(result) || result == "")
         {

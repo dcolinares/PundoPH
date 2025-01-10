@@ -7,6 +7,7 @@ namespace PundoPH.ViewModel
     {
         public List<WithdrawModel> WithdrawModels { get; set; }
         public List<WithdrawsWithUserModel> withdrawsWithUserModels { get; set; }
+        public ContributionAndDisbursement ContributionAndDisbursement { get; set; }
         public WithdrawModel WithdrawModel { get; set; }
 
         private readonly WithdrawService _withdrawService;
@@ -32,6 +33,12 @@ namespace PundoPH.ViewModel
         {
             withdrawsWithUserModels = await _withdrawService.GetWithdrawWithUser();
             return withdrawsWithUserModels;
+        }
+
+        public async Task<ContributionAndDisbursement> GetTotalContributionAndDisbursement()
+        { 
+            ContributionAndDisbursement = await _withdrawService.GetTotalContributionAndDisbursement();
+            return ContributionAndDisbursement;
         }
     }
 }

@@ -1,21 +1,67 @@
 ﻿@page "/Profile"
 @using System.Text.Json
 @using PundoPH.Model
+@using PundoPH.Pages.Components
+@using PundoPH.Service
 @inject IJSRuntime JSRuntime
 @inject NavigationManager navigation
+@inject Service Service
 
-<h3>Profile</h3>
-First Name :
-<label class="mb-2">@CurrentUser?.FirstName</label>
-Last Name :
-<label class="mb-2">@CurrentUser?.LastName</label>
-Email :
-<label class="mb-2">@CurrentUser?.Email</label>
+<div class="bg-light p-4">
+    
+
+    <div class="row col-3 bg-white ratio-16x9 rounded-1 shadow p-3">
+        <div class="col image-align bg-light p-2 mb-3">
+            <h3>Profile</h3>
+            <span class="oi oi-person display-1 align-content-center" />
+        </div>
+
+        <label class="p-0">First Name :</label>
+        <input type="text" class="form-control mb-2" value="@CurrentUser?.FirstName" />
+        <label class="p-0">Last Name :</label>
+        <input class="form-control mb-2" value="@CurrentUser?.LastName" />
+        <label class="p-0">Email :</label>
+        <input class="form-control mb-2" value="@CurrentUser?.Email" />
+        <div class="col">
+            Password:
+            <a class="show p-2" @onclick="ShowModal">Reset</a>
+        </div>
+    </div>
+</div>
+  
+
+    <PundoPH.Pages.Components.ResetPassword @ref="ModalRef" Title="Reset Password" OnClose="HandleModalClose">
+        <input type="password" id="newPassword" placeholder="New password" @bind="newPassword" class="form-control mb-2" />
+        <input type="password" id="confirmPassword" placeholder="Confirm password" @bind="confirmPassword" class="form-control mb-2" />
+        <p class="text-danger">@errorMessage</p>
+        <button class="btn btn-primary" @onclick="SubmitResetPassword">Submit</button>
+        <button class="btn btn-secondary" @onclick="ModalRef.CloseModal">Back</button>
+    </PundoPH.Pages.Components.ResetPassword>
+
+
+<style>
+    .show{
+    cursor:pointer;
+    }
+
+    .show:hover {
+    color:deeppink;
+    }
+
+    .image-align{
+        text-align:center;
+        color:dodgerblue;
+    }
+</style>
 
 @code {
     [Parameter]
     public string UserID { get; set; }
     private User? CurrentUser;
+    private ResetPassword ModalRef { get; set; }
+    private string confirmPassword = "";
+    private string newPassword = "";
+    private string errorMessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -33,6 +79,49 @@ Email :
         {
             navigation.NavigateTo("/");
         }
-       
+
+    }
+
+    // Show as a modal
+    private void ShowModal()
+    {
+        newPassword = string.Empty;
+        confirmPassword = string.Empty;
+        errorMessage = string.Empty;
+        ModalRef.OpenModal();
+    }
+
+    private async void HandleModalClose()
+    {
+        StateHasChanged();
+    }
+
+    private async Task SubmitResetPassword()
+    {
+        if (string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+        {
+            // Handle empty password fields
+            errorMessage = "Passwords cannot be empty.";
+            return;
+        }
+
+        if (newPassword != confirmPassword)
+        {
+            // Handle password mismatch
+            errorMessage = "Passwords do not match.";
+            return;
+        }
+
+        try
+        {
+            // Call your service to update the password
+            Service.User.ResetPassword(CurrentUser.Id, newPassword);
+            errorMessage = "Password reset successfully.";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error resetting password: {ex.Message}";
+            return;
+        }
     }
 }

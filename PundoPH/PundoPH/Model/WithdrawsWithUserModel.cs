@@ -13,4 +13,11 @@ namespace PundoPH.Model
 
         public string UserName { get; set; }
     }
+
+    public class ContributionAndDisbursement
+    { 
+        public decimal TotalContribution { get; set; }
+        public decimal TotalDisbursement { get; set; }
+        public decimal AvailabelBalance { get; set; }
+    }
 }

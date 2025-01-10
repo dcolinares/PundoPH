@@ -1,9 +1,10 @@
-﻿@using PundoPH.Data
+﻿@* @using PundoPH.Data *@
 @using PundoPH.Model
 @using System.Text.Json
+@using PundoPH.Service
 @inject Data.AppDbContext DbContext
 @inject NavigationManager navigationManager
-@inject UserService UserService
+@inject Service Service
 @inject IJSRuntime JSRuntime
 
 <EditForm Model="@user" OnValidSubmit="SaveCreateUser" class="col-12">
@@ -24,10 +25,10 @@
 
     private async Task SaveCreateUser()
     {
-        string result = await UserService.SaveCreateUser(user);
+        string result = await Service.User.SaveCreateUser(user);
         if (string.IsNullOrEmpty(result) || result == "")
         {
-            var u = UserService.GetUser(user.FirstName, user.Password);
+            var u = Service.User.GetUser(user.FirstName, user.Password);
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", u.Token);
 

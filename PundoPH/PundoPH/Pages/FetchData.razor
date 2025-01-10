@@ -1,15 +1,15 @@
 ﻿@page "/fetchdata"
 @using PundoPH.Model
 @using PundoPH.Helper
-@using PundoPH.Data
+@using PundoPH.Service
 @using PundoPH.Pages.Components
 @using PundoPH.ViewModel
 
-@inject ContributionService ContributionService
+@* @inject ContributionService ContributionService *@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 @inject MessageHelper Message 
-@inject UserService UserService
+@inject Service Service
 @inject IWithdrawViewModel Withdraw
 
 <div class="card p-2 bg-light mb-3">
@@ -22,6 +22,7 @@
     <div class="col p-2">
         <a class="p-2" href="/AddContribution">Add Contribution</a>
         <span class="btn btn-primary p-2" @onclick="ShowModal">Disburse Money</span>
+        <span class="font-savings p-3 mt-3">Total Savings ₱@ContributionAndDisbursement.AvailabelBalance.ToString("N2")</span>
     </div>
 
     <PundoPH.Pages.Components.WithdrawComponents @ref="ModalRef" Title="Withdraw" OnClose="HandleModalClose">
@@ -44,11 +45,12 @@
         {
             <div class="tab-pane active">
                 <div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
-                    <input type="text" placeholder="Search by Name or Date" @bind="seachName" @bind:event="oninput" class="form-control" />
+                     <input type="text" placeholder="Search by Name or Date" @bind="seachName" @bind:event="oninput" class="form-control" />
                 </div>
+                <h3 class="text-primary">Total Contribution:₱@ContributionAndDisbursement.TotalContribution.ToString("N2")</h3>
 
                 <div class="p-2 bg-opacity-10">
-                    @if (contribution == null)
+                    @if (PagedContributions == null)
                     {
                         <p><em>Loading...</em></p>
                     }
@@ -67,7 +69,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var c in contribution)
+                                @foreach (var c in PagedContributions)
                                 {
                                     <tr>
                                         <td>@c.ContributionID</td>
@@ -84,6 +86,12 @@
                                 }
                             </tbody>
                         </table>
+
+                        <div class="pagination">
+                            <button @onclick="PreviousPage" disabled="@IsFirstPage" class="btn btn-primary">Previous</button>
+                            <span class="p-2">Page @CurrentPage of @TotalPages</span>
+                            <button @onclick="NextPage" disabled="@IsLastPage" class="btn btn-primary">Next</button>
+                        </div>
                     }
                 </div>
             </div>
@@ -94,9 +102,9 @@
                 <div class="col-4 col-lg-4 col-md-6 col-sm-12 mb-3 mt-2">
                     <input type="text" placeholder="Search by Name or Date" @bind="seachWithdrawName" @bind:event="oninput" class="form-control" />
                 </div>
-
+                <h3 class="text-primary">Total Disbursement:₱@ContributionAndDisbursement.TotalDisbursement.ToString("N2")</h3>
                 <div class="p-2 bg-opacity-10">
-                    @if (withdrawModels == null)
+                    @if (PagedDisbursement == null)
                     {
                         <p><em>Loading...</em></p>
                     }
@@ -115,7 +123,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var w in withdrawModels)
+                                @foreach (var w in PagedDisbursement)
                                 {
                                     <tr>
                                         <td>@w.WithdrawID</td>
@@ -128,6 +136,12 @@
                                 }
                             </tbody>
                         </table>
+
+                        <div class="pagination">
+                            <button @onclick="PreviousPage2" disabled="@IsFirstPage2" class="btn btn-primary">Previous</button>
+                            <span class="p-2">Page @CurrentPageForDisbursement of @TotalPagesDisbursement</span>
+                            <button @onclick="NextPage2" disabled="@IsLastPage2" class="btn btn-primary">Next</button>
+                        </div>
                     }
                 </div>
             </div>
@@ -168,16 +182,27 @@
     border-color: #ddd;
     font-size: 18px;
     }
+
+    .font-savings{
+    font-size:30px;
+    color: deepPink;
+    }
 </style>
 
 @code {
     // private WeatherForecast[]? forecasts;
     private List<Contribution>? contribution;
     private List<WithdrawsWithUserModel>? withdrawModels = new();
+    private ContributionAndDisbursement? ContributionAndDisbursement = new();
     private string _searchName = string.Empty;
     private string tab1 = "tab1";
     private string tab2 = "tab2";
     private string activeTab1 = "Tab1";
+    private int CurrentPage { get; set; } = 1;
+    private int CurrentPageForDisbursement { get; set; } = 1;
+    private int PageSize { get; set; } = 10;
+    private int TotalPages => (int)Math.Ceiling(contribution.Count / (double)PageSize);
+    private int TotalPagesDisbursement => (int)Math.Ceiling(withdrawModels.Count / (double)PageSize);
     private string seachName
     {
         get => _searchName;
@@ -205,10 +230,11 @@
     protected override async Task OnInitializedAsync()
     {
         //string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
-        if (await ContributionService.GetContribution() != null)
+        if (Service.User.CurrentUser != null)
         {
-            contribution = await ContributionService.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
+            contribution = await Service.Contribution.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
             withdrawModels = await Withdraw.GetWithdrawWithUserl();
+            ContributionAndDisbursement = await Withdraw.GetTotalContributionAndDisbursement();
         }
         else
         {
@@ -227,8 +253,8 @@
         var confirmed = await Message.MessageBox("confirm", $"Are you sure you want to delete this contribution with contributionID of {contributionID} ?");
         if (confirmed)
         {
-            await ContributionService.Delete(contributionID);
-            contribution = await ContributionService.GetContribution();
+            await Service.Contribution.Delete(contributionID);
+            contribution = await Service.Contribution.GetContribution();
 
             //Trigger UI to refresh
             StateHasChanged();
@@ -239,11 +265,11 @@
     {
         if (seachName.Length > 0)
         {
-            contribution = contribution.Where(c => c.Name.Contains(searchName) || c.DateReceived.ToShortDateString().Contains(searchName)).ToList();
+            contribution = contribution.Where(c => c.Name.Contains(searchName, StringComparison.OrdinalIgnoreCase) || c.DateReceived.ToShortDateString().Contains(searchName)).ToList();
         }
         else
         {
-            contribution = await ContributionService.GetContribution();
+            contribution = await Service.Contribution.GetContribution();
         }
         //Trigger UI to refresh
         StateHasChanged();
@@ -252,7 +278,7 @@
     {
         if (seachName.Length > 0)
         {
-            withdrawModels = withdrawModels.Where(c => c.Name.Contains(searchName) || c.WithdrawDate.ToShortDateString().Contains(searchName)).ToList();
+            withdrawModels = withdrawModels.Where(c => c.Name.Contains(searchName, StringComparison.OrdinalIgnoreCase) || c.WithdrawDate.ToShortDateString().Contains(searchName)).ToList();
         }
         else
         {
@@ -262,7 +288,6 @@
         StateHasChanged();
     }
 
-
     // Show as a modal
     private WithdrawComponents ModalRef { get; set; }
 
@@ -271,14 +296,60 @@
         ModalRef.OpenModal();
     }
 
-    private void HandleModalClose()
+    private async void HandleModalClose()
     {
-        Console.WriteLine("Modal closed");
+        withdrawModels = await Withdraw.GetWithdrawWithUserl();
+        ContributionAndDisbursement = await Withdraw.GetTotalContributionAndDisbursement();
+        StateHasChanged();
     }
 
     //Create tab control
     private void SelectTab1(string tab)
     {
         activeTab1 = tab;
+    }
+
+    // Pagination starts here for contribution
+    private IEnumerable<Contribution> PagedContributions =>
+            contribution.Skip((CurrentPage - 1) * PageSize).Take(PageSize);
+    private bool IsFirstPage => CurrentPage == 1;
+    private bool IsLastPage => CurrentPage == TotalPages;
+
+    private void NextPage()
+    {
+        if (!IsLastPage)
+        {
+            CurrentPage++;
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (!IsFirstPage)
+        {
+            CurrentPage--;
+        }
+    }
+
+    // Pagination for disbursement
+    private IEnumerable<WithdrawsWithUserModel> PagedDisbursement =>
+                withdrawModels.Skip((CurrentPageForDisbursement - 1) * PageSize).Take(PageSize);
+    private bool IsFirstPage2 => CurrentPageForDisbursement == 1;
+    private bool IsLastPage2 => CurrentPageForDisbursement == TotalPagesDisbursement;
+
+    private void NextPage2()
+    {
+        if (!IsLastPage2)
+        {
+            CurrentPageForDisbursement++;
+        }
+    }
+
+    private void PreviousPage2()
+    {
+        if (!IsFirstPage2)
+        {
+            CurrentPageForDisbursement--;
+        }
     }
 }

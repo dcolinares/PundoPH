@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xSZWdpc3RlckFjY291bnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/ResetPassword.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xSZXNldFBhc3N3b3JkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/WithdrawComponents.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xXaXRoZHJhd0NvbXBvbmVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

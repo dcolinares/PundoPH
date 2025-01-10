@@ -4,13 +4,13 @@
 @using PundoPH.Model;
 @using PundoPH.Pages.Components;
 @using System.Text.Json
-@using PundoPH.Data
 @using PundoPH.Helper
+@using PundoPH.Service
 
 @inject IJSRuntime JSRuntime
-@inject UserService UserService
 @inject NavigationManager NavigationManager
 @inject LoginHelper LoginHelper
+@inject Service Service
 
 
 <PageTitle>Index</PageTitle>
@@ -31,8 +31,8 @@ Welcome to your online "Pundo" savings.
 
             if (!string.IsNullOrEmpty(userData))
             {
-                UserService.CurrentUser = JsonSerializer.Deserialize<User>(userData);
-                CurrentUser = UserService.CurrentUser;
+                Service.User.CurrentUser = JsonSerializer.Deserialize<User>(userData);
+                CurrentUser = Service.User.CurrentUser;
             }
         }
         else 

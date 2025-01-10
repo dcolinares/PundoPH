@@ -1,10 +1,12 @@
 ﻿@using PundoPH.Model
-@using PundoPH.Data
+@* @using PundoPH.Data *@
 @using System.Text.Json
+@using PundoPH.Service
 
 @inject NavigationManager navigationManager
 @inject IJSRuntime JSRuntime
-@inject UserService UserService
+@* @inject UserService UserService *@
+@inject Service Service
 
 <EditForm Model="loginModel" class="col-12">
     <InputText class="form-control mb-2" placeHolder="UserName" @bind-Value="@loginModel.UserName"></InputText>
@@ -27,7 +29,7 @@
 
     private async Task Login() 
     {
-        var user = UserService.GetUser(loginModel.UserName, loginModel.Password);
+        var user = Service.User.GetUser(loginModel.UserName, loginModel.Password);
         if (user != null)
         {
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(user));

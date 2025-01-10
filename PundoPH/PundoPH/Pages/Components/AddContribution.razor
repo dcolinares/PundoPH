@@ -1,17 +1,17 @@
 ﻿@using PundoPH.Model
 @using System.Text.Json
-@using PundoPH.Data
+@using PundoPH.Service
 @inject IJSRuntime JSRuntime
-@inject UserService UserService
-@inject ContributionService ContributionService
+@* @inject UserService UserService *@
+@inject Service Service
 @inject NavigationManager Navigation
 
 
 @page "/AddContribution"
 
-@if (UserService.CurrentUser != null)
+@if (Service.User.CurrentUser != null)
 { 
-    <h3>AddContribution | @UserService.CurrentUser.FirstName | @UserService.CurrentUser.Id</h3>
+    <h3>AddContribution | @Service.User.CurrentUser.FirstName | @Service.User.CurrentUser.Id</h3>
 
 <EditForm Model="contribution" OnValidSubmit="SaveContribution" class="col-6">
     <DataAnnotationsValidator />
@@ -44,9 +44,9 @@
 
     public async Task SaveContribution()
     {
-        contribution.UserName = UserService.CurrentUser.FirstName;
-        contribution.UserID = UserService.CurrentUser.Id;
-        string result = await ContributionService.Save(contribution);
+        contribution.UserName = Service.User.CurrentUser.FirstName;
+        contribution.UserID = Service.User.CurrentUser.Id;
+        string result = await Service.Contribution.Save(contribution);
         if (string.IsNullOrEmpty(result) || result == "")
         {
             Navigation.NavigateTo("/fetchdata");

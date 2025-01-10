@@ -82,6 +82,28 @@ namespace PundoPH.Data
             return result;
         }
 
+        public void ResetPassword(int userID, string password)
+        {
+            string results = "";
+            try
+            {
+                var user = _appDbContext.Users.Where(x=>x.Id.Equals(userID)).FirstOrDefault();
+                if (user != null)
+                {
+                    user.Password = password;
+                    _appDbContext.SaveChanges();
+
+                } else 
+                {
+                    results = "Invalid users!";
+                }
+            } catch (Exception ex) 
+            { 
+                results += ex.Message;
+            }
+
+        }
+
         public User? CurrentUser { get; set; }
     }
 }
