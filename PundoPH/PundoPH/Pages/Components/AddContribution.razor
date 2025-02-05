@@ -23,7 +23,7 @@
 </EditForm> 
 }else
 {
-    Navigation.NavigateTo("/");
+    InvokeAsync(() => Navigation.NavigateTo("/")); 
 }
 
 

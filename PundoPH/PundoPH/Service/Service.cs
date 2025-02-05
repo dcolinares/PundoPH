@@ -8,12 +8,16 @@ namespace PundoPH.Service
         public UserService User { get; set; }
         public ContributionService Contribution { get; set; }
         public WithdrawService Withdraw { get; set; }
-        
-        public Service(UserService userService, ContributionService contributionService, WithdrawService withdrawService) 
+
+        public ExportService Export { get; set; }
+
+        public Service(UserService userService, ContributionService contributionService, WithdrawService withdrawService
+            , ExportService export) 
         { 
             User = userService;
             Contribution = contributionService;
             Withdraw = withdrawService;
+            Export = export;
         }
     }
 }

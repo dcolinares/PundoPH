@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K/qJG+5jufjBCVcCjP0uNcjAshzJe+z3+4+3lv1Cgjc=",
+  "Hash": "yOPntIwpfQGulP93qGWQa1u/hsMxqEODsx+W/WjlIeA=",
   "Source": "PundoPH",
   "BasePath": "_content/PundoPH",
   "Mode": "Default",
@@ -330,6 +330,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\wwwroot\\index.html",
+      "SourceId": "PundoPH",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\wwwroot\\",
+      "BasePath": "_content/PundoPH",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8jylwpav06",
+      "Integrity": "FCb22spFOv8AAo4kZhL7tdA+gGhP5YdaTlMg+R4xp8k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
     }
   ],
   "Endpoints": [
@@ -1400,6 +1421,88 @@
       ]
     },
     {
+      "Route": "index.8jylwpav06.html",
+      "AssetFile": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "418"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FCb22spFOv8AAo4kZhL7tdA+gGhP5YdaTlMg+R4xp8k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Feb 2025 07:24:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8jylwpav06"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FCb22spFOv8AAo4kZhL7tdA+gGhP5YdaTlMg+R4xp8k="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "418"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FCb22spFOv8AAo4kZhL7tdA+gGhP5YdaTlMg+R4xp8k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Feb 2025 07:24:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FCb22spFOv8AAo4kZhL7tdA+gGhP5YdaTlMg+R4xp8k="
+        }
+      ]
+    },
+    {
       "Route": "PundoPH.bundle.scp.css",
       "AssetFile": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\PundoPH.bundle.scp.css",
       "Selectors": [],
@@ -1422,7 +1525,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Jan 2025 04:13:31 GMT"
+          "Value": "Wed, 05 Feb 2025 03:12:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1459,7 +1562,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Jan 2025 04:13:31 GMT"
+          "Value": "Wed, 05 Feb 2025 03:12:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1504,7 +1607,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Jan 2025 05:28:48 GMT"
+          "Value": "Wed, 05 Feb 2025 03:12:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1549,7 +1652,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 09 Jan 2025 05:28:48 GMT"
+          "Value": "Wed, 05 Feb 2025 03:12:28 GMT"
         },
         {
           "Name": "Cache-Control",

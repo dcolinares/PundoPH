@@ -28,8 +28,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xBZGRDb250cmlidXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/DownloadComponents.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xEb3dubG9hZENvbXBvbmVudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/EditContribution.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xFZGl0Q29udHJpYnV0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/ExportComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xFeHBvcnRDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WorkSpace/PundoPH/PundoPH/PundoPH/PundoPH/Pages/Components/LoginComponents.razor]

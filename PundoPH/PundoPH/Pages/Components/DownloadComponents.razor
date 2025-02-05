@@ -1,0 +1,25 @@
+﻿@using PundoPH.Service
+
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject Service Service
+@inject HttpClient Http
+
+<button class="btn btn-primary" @onclick="DownloadExcel">Download Excel</button>
+
+@code {
+    private async Task DownloadExcel()
+    {
+        var token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (!string.IsNullOrEmpty(token))
+        {
+            var fileName = "ContributionReport.xlsx";
+            var contributions = await Service.Contribution.GetContribution();
+            await Service.Export.DownloadExcel(fileName, contributions);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}

@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\WorkSpace\\PundoPH\\PundoPH\\PundoPH\\PundoPH\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.PundoPH.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

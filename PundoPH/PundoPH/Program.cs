@@ -20,8 +20,11 @@ builder.Services.AddScoped<ContributionService>();// TODO: Need to delete soon
 builder.Services.AddScoped<MessageHelper>();
 builder.Services.AddScoped<LoginHelper>();
 builder.Services.AddScoped<WithdrawService>();// TODO: Need to delete soon
+builder.Services.AddScoped<ExportService>();// TODO: Need to delete soon
 builder.Services.AddScoped<IWithdrawViewModel, WithdrawViewModel>();
 builder.Services.AddScoped<Service>();// All services class are move to this Service class
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7257/") });
+builder.Services.AddHttpClient();
 
 // Add services to the container
 builder.Services.AddDbContext<AppDbContext>(options =>

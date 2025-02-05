@@ -28,5 +28,25 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script>
+            window.downloadFile = async (fileName, streamRef) => {
+            try {
+                const arrayBuffer = await streamRef.arrayBuffer();
+                const blob = new Blob([new Uint8Array(arrayBuffer)], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                const url = window.URL.createObjectURL(blob);
+
+                const anchor = document.createElement("a");
+                anchor.href = url;
+                anchor.download = fileName;
+                document.body.appendChild(anchor);  // Required for Firefox
+                anchor.click();
+                document.body.removeChild(anchor);
+
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error("Download error:", error);
+            }
+        };
+    </script>
 </body>
 </html>
