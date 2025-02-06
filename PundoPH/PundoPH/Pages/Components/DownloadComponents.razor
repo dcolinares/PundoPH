@@ -5,7 +5,8 @@
 @inject Service Service
 @inject HttpClient Http
 
-<button class="btn btn-primary" @onclick="DownloadExcel">Download Excel</button>
+<button class="oi oi-document btn btn-outline-primary" @onclick="DownloadExcel"> xls</button>
+<button class="oi oi-document btn btn-outline-danger" @onclick="DownloadPdf"> pdf</button>
 
 @code {
     private async Task DownloadExcel()
@@ -15,7 +16,22 @@
         {
             var fileName = "ContributionReport.xlsx";
             var contributions = await Service.Contribution.GetContribution();
-            await Service.Export.DownloadExcel(fileName, contributions);
+            await Service.Export.Excel(fileName, contributions);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    private async Task DownloadPdf()
+    {
+        var token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        if (!string.IsNullOrEmpty(token))
+        {
+            string fileName = "ContributionReport.pdf";
+            var contributions = await Service.Contribution.GetContribution();
+            await Service.Export.Pdf(contributions, fileName);
         }
         else
         {

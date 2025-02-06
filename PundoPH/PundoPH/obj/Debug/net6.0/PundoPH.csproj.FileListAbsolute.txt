@@ -42,11 +42,6 @@ E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\PundoPH.deps.json
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\PundoPH.runtimeconfig.json
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\PundoPH.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\PundoPH.pdb
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\ClosedXML.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\ClosedXML.Parser.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\DocumentFormat.OpenXml.Framework.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\ExcelNumberFormat.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Humanizer.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
@@ -70,14 +65,11 @@ E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.Identity
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\RBush.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\SixLabors.Fonts.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Collections.Immutable.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Drawing.Common.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.IO.Packaging.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Runtime.Caching.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\WorkSpace\PundoPH\PundoPH\PundoPH\PundoPH\bin\Debug\net6.0\System.Security.Permissions.dll

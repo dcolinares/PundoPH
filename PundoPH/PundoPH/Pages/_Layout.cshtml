@@ -28,11 +28,12 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-            window.downloadFile = async (fileName, streamRef) => {
+            window.downloadFile = async (fileName, streamRef, fileType) => {
             try {
                 const arrayBuffer = await streamRef.arrayBuffer();
-                const blob = new Blob([new Uint8Array(arrayBuffer)], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                const blob = new Blob([new Uint8Array(arrayBuffer)], { type: fileType });
                 const url = window.URL.createObjectURL(blob);
 
                 const anchor = document.createElement("a");
@@ -45,7 +46,7 @@
                 window.URL.revokeObjectURL(url);
             } catch (error) {
                 console.error("Download error:", error);
-            }
+            }    
         };
     </script>
 </body>
