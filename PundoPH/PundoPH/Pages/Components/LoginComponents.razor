@@ -29,8 +29,8 @@
 
     private async Task Login() 
     {
-        var user = Service.User.GetUser(loginModel.UserName, loginModel.Password);
-        if (user != null)
+        var user = await Service.User.GetUser(loginModel.UserName, loginModel.Password);
+        if (user.Id > 0)
         {
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(user));
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", user.Token);

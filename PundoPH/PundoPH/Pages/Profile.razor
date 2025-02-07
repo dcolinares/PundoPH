@@ -8,7 +8,7 @@
 @inject Service Service
 
 <div class="bg-light p-4">
-    
+
 
     <div class="row col-3 bg-white ratio-16x9 rounded-1 shadow p-3">
         <div class="col image-align bg-light p-2 mb-3">
@@ -28,15 +28,15 @@
         </div>
     </div>
 </div>
-  
 
-    <PundoPH.Pages.Components.ResetPassword @ref="ModalRef" Title="Reset Password" OnClose="HandleModalClose">
-        <input type="password" id="newPassword" placeholder="New password" @bind="newPassword" class="form-control mb-2" />
-        <input type="password" id="confirmPassword" placeholder="Confirm password" @bind="confirmPassword" class="form-control mb-2" />
-        <p class="text-danger">@errorMessage</p>
-        <button class="btn btn-primary" @onclick="SubmitResetPassword">Submit</button>
-        <button class="btn btn-secondary" @onclick="ModalRef.CloseModal">Back</button>
-    </PundoPH.Pages.Components.ResetPassword>
+
+<PundoPH.Pages.Components.ResetPassword @ref="ModalRef" Title="Reset Password" OnClose="HandleModalClose">
+    <input type="password" id="newPassword" placeholder="New password" @bind="newPassword" class="form-control mb-2" />
+    <input type="password" id="confirmPassword" placeholder="Confirm password" @bind="confirmPassword" class="form-control mb-2" />
+    <p class="text-danger">@errorMessage</p>
+    <button class="btn btn-primary" @onclick="SubmitResetPassword">Submit</button>
+    <button class="btn btn-secondary" @onclick="ModalRef.CloseModal">Back</button>
+</PundoPH.Pages.Components.ResetPassword>
 
 
 <style>
@@ -49,8 +49,8 @@
     }
 
     .image-align{
-        text-align:center;
-        color:dodgerblue;
+    text-align:center;
+    color:dodgerblue;
     }
 </style>
 
@@ -115,8 +115,15 @@
         try
         {
             // Call your service to update the password
-            Service.User.ResetPassword(CurrentUser.Id, newPassword);
-            errorMessage = "Password reset successfully.";
+            string result = Service.User.ResetPassword(CurrentUser.Id, newPassword);
+            if (result != "")
+            {
+                errorMessage = result;
+            }
+            else
+            { 
+                errorMessage = "Password reset successfully.";
+            }
         }
         catch (Exception ex)
         {

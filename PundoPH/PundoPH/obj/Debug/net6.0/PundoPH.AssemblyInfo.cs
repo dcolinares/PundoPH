@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PundoPH")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e181a7a703f60b267d27829153ceee1012884ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea2f7420e7f5b6b10ec1466a0485c2c7fbc140fa")]
 [assembly: System.Reflection.AssemblyProductAttribute("PundoPH")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PundoPH")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

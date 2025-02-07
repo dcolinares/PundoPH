@@ -28,7 +28,7 @@
         string result = await Service.User.SaveCreateUser(user);
         if (string.IsNullOrEmpty(result) || result == "")
         {
-            var u = Service.User.GetUser(user.FirstName, user.Password);
+            var u = await Service.User.GetUser(user.FirstName, user.Password);
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", u.Token);
 

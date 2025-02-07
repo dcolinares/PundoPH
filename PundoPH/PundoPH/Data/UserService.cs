@@ -1,107 +1,43 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.JSInterop;
 using PundoPH.Model;
+using System.Net.Http;
 
 namespace PundoPH.Data
 {
     public class UserService
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly HttpClient _http;
+        private readonly IJSRuntime _jsRuntime;
 
         // Constructor to inject AppDbContext
-        public UserService(AppDbContext appDbContext)
+        public UserService(HttpClient httpClient, IJSRuntime jSRuntime)
         {
-            _appDbContext = appDbContext;
+            _http = httpClient;
+            _jsRuntime = jSRuntime;
         }
-        public UserService()
-        {
-            
-        }
+
         // Method to fetch user details
-        public User? GetUser(string userName, string password)
+        public async Task<User?> GetUser(string userName, string password)
         {
-            var user = _appDbContext.Users
-                .FirstOrDefault(x =>
-                    x.FirstName.Equals(userName) &&
-                    x.Password == password); // Adjust based on password hashing if implemented
-            // Check token
-            //if (!string.IsNullOrEmpty(CheckToken(user)) || CheckToken(user) == "")
-            //{
-            //    return user = new User();
-            //}
-            if (user != null)
-            {
-                UpdateUserToken(user);
-            }
+            var response = await _http.GetAsync($"api/user/get?userName={userName}&password={password}");
+            var user = await response.Content.ReadFromJsonAsync<User>();
             return user;
-        }
-
-        public string CheckToken(User user)
-        {
-            string errorMessage = "";
-            if (TokenIsExpired(user.Token))
-            {
-                return errorMessage = "Token is expired!";
-            } else
-            {
-                UpdateUserToken(user);
-            }
-            return errorMessage;
-        }
-
-        public void UpdateUserToken(User user)
-        {
-            user.Token = Guid.NewGuid().ToString();
-            user.TokenExpirationDate = DateTime.Now;
-            _appDbContext.SaveChanges();
-        }
-
-        public bool TokenIsExpired(string token)
-        {
-            var tokenIsExpired = _appDbContext.Users
-                .Where(x => x.Token.Equals(token) && x.TokenExpirationDate >= DateTime.UtcNow.AddMinutes(-20))
-                .Select(x => x.TokenExpirationDate)
-                .FirstOrDefault();
-            return tokenIsExpired != null;
         }
 
         public async Task<string> SaveCreateUser(User user)
         {
-            string result = "";
-            try 
-            {
-                _appDbContext.Users.Add(user);
-                await _appDbContext.SaveChangesAsync();
-                result = "";
-            }
-            catch(Exception ex)
-            {
-                result = ex.Message.ToString();
-            }
-
+            var response = await _http.PostAsJsonAsync("api/user/create", user);
+            var result = response.Content.ReadAsStringAsync().Result;
             return result;
         }
 
-        public void ResetPassword(int userID, string password)
+        public string ResetPassword(int userID, string password)
         {
-            string results = "";
-            try
-            {
-                var user = _appDbContext.Users.Where(x=>x.Id.Equals(userID)).FirstOrDefault();
-                if (user != null)
-                {
-                    user.Password = password;
-                    _appDbContext.SaveChanges();
-
-                } else 
-                {
-                    results = "Invalid users!";
-                }
-            } catch (Exception ex) 
-            { 
-                results += ex.Message;
-            }
-
+            var response = _http.PostAsJsonAsync($"api/user/update-password?userID={userID}&password={password}", new { });
+            var result = response.Result.Content.ReadAsStringAsync();
+            return result.Result;
         }
 
         public User? CurrentUser { get; set; }
