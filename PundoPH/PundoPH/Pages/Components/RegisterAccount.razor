@@ -6,6 +6,7 @@
 @inject NavigationManager navigationManager
 @inject Service Service
 @inject IJSRuntime JSRuntime
+@inject User User
 
 <EditForm Model="@user" OnValidSubmit="SaveCreateUser" class="col-12">
     <DataAnnotationsValidator />
@@ -29,9 +30,10 @@
         if (string.IsNullOrEmpty(result) || result == "")
         {
             var u = await Service.User.GetUser(user.FirstName, user.Password);
-            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
-            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", u.Token);
-
+            //await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(u));
+            //await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", u.Token);
+            User.Token = user.Token;
+            User.CurrentUser = user;
             navigationManager.NavigateTo($"/Index/{user.Id}");
         }
         else 
