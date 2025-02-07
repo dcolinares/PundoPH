@@ -1,6 +1,8 @@
 ﻿@page "/Transaction"
+@using PundoPH.Model
 @inject IJSRuntime JSRuntime
 @inject NavigationManager navigation
+@inject User User
 
 @if(!string.IsNullOrEmpty(token))
 {
@@ -11,7 +13,7 @@
     private string token = "";
     protected override async Task OnInitializedAsync()
     {
-        token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        token = User.Token;//await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
         if (string.IsNullOrEmpty(token))
         {
             navigation.NavigateTo("/");

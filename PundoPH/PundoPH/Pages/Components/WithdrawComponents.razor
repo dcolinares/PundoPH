@@ -110,7 +110,7 @@
 
     public async Task ClickWidraw()
     {
-        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        string token = User.Token;//await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
         bool hasToken = await LoginHelper.IsAuthenticated(token);
         if (hasToken)
         {

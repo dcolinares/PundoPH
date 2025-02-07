@@ -6,6 +6,7 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager navigation
 @inject Service Service
+@inject User User
 
 <div class="bg-light p-4">
 
@@ -65,19 +66,27 @@
 
     protected override async Task OnInitializedAsync()
     {
-        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
-        if (!string.IsNullOrEmpty(token))
-        {
-            string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+        // string token = User.Token;//await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        // if (!string.IsNullOrEmpty(token))
+        // {
+        //     string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
 
-            if (!string.IsNullOrEmpty(userData))
-            {
-                CurrentUser = JsonSerializer.Deserialize<User>(userData);
-            }
+        //     if (!string.IsNullOrEmpty(userData))
+        //     {
+        //         CurrentUser = JsonSerializer.Deserialize<User>(userData);
+        //     }
+        // }
+        // else
+        // {
+        //     navigation.NavigateTo("/");
+        // }
+        if (!string.IsNullOrEmpty(User.Token))
+        {
+            CurrentUser = User.CurrentUser;
         }
         else
         {
-            navigation.NavigateTo("/");
+            navigation.NavigateTo("/logout");
         }
 
     }

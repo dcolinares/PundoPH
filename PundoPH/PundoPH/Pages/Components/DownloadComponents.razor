@@ -1,9 +1,11 @@
-﻿@using PundoPH.Service
+﻿@using PundoPH.Model
+@using PundoPH.Service
 
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 @inject Service Service
 @inject HttpClient Http
+@inject User User
 
 <button class="oi oi-document btn btn-outline-primary" @onclick="DownloadExcel"> xls</button>
 <button class="oi oi-document btn btn-outline-danger" @onclick="DownloadPdf"> pdf</button>
@@ -11,7 +13,7 @@
 @code {
     private async Task DownloadExcel()
     {
-        var token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        var token = User.Token;/* await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token"); */
         if (!string.IsNullOrEmpty(token))
         {
             var fileName = "ContributionReport.xlsx";
@@ -26,7 +28,7 @@
 
     private async Task DownloadPdf()
     {
-        var token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        var token = User.Token; //await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
         if (!string.IsNullOrEmpty(token))
         {
             string fileName = "ContributionReport.pdf";
