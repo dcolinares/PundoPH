@@ -26,5 +26,9 @@ namespace PundoPH.Model
 
         public string Token { get; set; } = Guid.NewGuid().ToString();
         public DateTime TokenExpirationDate { get; set; } = DateTime.Now;
+
+
+        public User? CurrentUser { get; set; }
+
     }
 }

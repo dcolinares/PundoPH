@@ -11,6 +11,7 @@
 @inject MessageHelper Message 
 @inject Service Service
 @inject IWithdrawViewModel Withdraw
+@inject User User
 
 <div class="card p-2 bg-light mb-3">
     <PageTitle>Donation list for chapel</PageTitle>
@@ -208,7 +209,7 @@
     private int CurrentPage { get; set; } = 1;
     private int CurrentPageForDisbursement { get; set; } = 1;
     private int PageSize { get; set; } = 10;
-    private int TotalPages => (int)Math.Ceiling(contribution.Count / (double)PageSize);
+    private int TotalPages => (int)Math.Ceiling((contribution?.Count ?? 0) / (double)PageSize);
     private int TotalPagesDisbursement => (int)Math.Ceiling(withdrawModels.Count / (double)PageSize);
     private string seachName
     {
@@ -237,7 +238,7 @@
     protected override async Task OnInitializedAsync()
     {
         //string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
-        if (Service.User.CurrentUser != null)
+        if (!string.IsNullOrEmpty(User.Token))
         {
             contribution = await Service.Contribution.GetContribution();//ForecastService.GetForecastAsync(DateTime.Now);
             withdrawModels = await Withdraw.GetWithdrawWithUserl();
@@ -245,7 +246,7 @@
         }
         else
         {
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/logout");
         }
         activeTab1 = tab1;
     }
@@ -318,7 +319,7 @@
 
     // Pagination starts here for contribution
     private IEnumerable<Contribution> PagedContributions =>
-            contribution.Skip((CurrentPage - 1) * PageSize).Take(PageSize);
+     contribution?.Skip((CurrentPage - 1) * PageSize).Take(PageSize) ?? Enumerable.Empty<Contribution>();
     private bool IsFirstPage => CurrentPage == 1;
     private bool IsLastPage => CurrentPage == TotalPages;
 

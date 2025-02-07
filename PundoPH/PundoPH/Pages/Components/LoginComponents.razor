@@ -5,6 +5,7 @@
 
 @inject NavigationManager navigationManager
 @inject IJSRuntime JSRuntime
+@inject User User
 @* @inject UserService UserService *@
 @inject Service Service
 
@@ -32,8 +33,10 @@
         var user = await Service.User.GetUser(loginModel.UserName, loginModel.Password);
         if (user.Id > 0)
         {
-            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(user));
-            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", user.Token);
+            //await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", JsonSerializer.Serialize(user));
+            //await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "Token", user.Token);
+            User.Token = user.Token;
+            User.CurrentUser = user;
             navigationManager.NavigateTo($"/Index/{user.Id}");
         }
         else 

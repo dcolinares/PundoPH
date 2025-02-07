@@ -11,6 +11,7 @@
 @inject NavigationManager NavigationManager
 @inject LoginHelper LoginHelper
 @inject Service Service
+@inject User User
 
 
 <PageTitle>Index</PageTitle>
@@ -24,20 +25,29 @@ Welcome to your online "Pundo" savings.
 
     protected override async Task OnInitializedAsync()
     {
-        string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
-        if (!string.IsNullOrEmpty(token))
-        {
-            string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+        // string token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "Token");
+        // if (!string.IsNullOrEmpty(token))
+        // {
+        //     string userData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
 
-            if (!string.IsNullOrEmpty(userData))
-            {
-                Service.User.CurrentUser = JsonSerializer.Deserialize<User>(userData);
-                CurrentUser = Service.User.CurrentUser;
-            }
-        }
-        else 
+        //     if (!string.IsNullOrEmpty(userData))
+        //     {
+        //         Service.User.CurrentUser = JsonSerializer.Deserialize<User>(userData);
+        //         CurrentUser = Service.User.CurrentUser;
+        //     }
+        // }
+        // else 
+        // {
+        //     NavigationManager.NavigateTo("/");
+        // }
+        if (!string.IsNullOrEmpty(User.Token))
         {
-            NavigationManager.NavigateTo("/");
+            CurrentUser = User.CurrentUser;
         }
+        else
+        {
+            NavigationManager.NavigateTo("/logout");
+        }
+        
     }
 }

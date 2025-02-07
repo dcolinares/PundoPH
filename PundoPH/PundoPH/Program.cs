@@ -25,6 +25,7 @@ builder.Services.AddScoped<IWithdrawViewModel, WithdrawViewModel>();
 builder.Services.AddScoped<Service>();// All services class are move to this Service class
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7257/") });
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<User>();
 
 // Add services to the container
 builder.Services.AddDbContext<AppDbContext>(options =>

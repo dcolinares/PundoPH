@@ -11,7 +11,7 @@ namespace PundoPH.Data
         private readonly HttpClient _http;
         private readonly IJSRuntime _jsRuntime;
 
-        // Constructor to inject AppDbContext
+        // Constructor to inject HttpClient and IJSRuntime
         public UserService(HttpClient httpClient, IJSRuntime jSRuntime)
         {
             _http = httpClient;
@@ -39,7 +39,5 @@ namespace PundoPH.Data
             var result = response.Result.Content.ReadAsStringAsync();
             return result.Result;
         }
-
-        public User? CurrentUser { get; set; }
     }
 }

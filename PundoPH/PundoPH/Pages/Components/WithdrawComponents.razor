@@ -9,6 +9,7 @@
 @inject LoginHelper LoginHelper
 @inject NavigationManager navigation
 @inject IJSRuntime JSRuntime
+@inject User User
 
 <div class="modal-overlay" style="@OverlayDisplay" @onclick="CloseModal"></div>
 <div class="modal" tabindex="-1" style="@ModalDisplay">
@@ -113,7 +114,7 @@
         bool hasToken = await LoginHelper.IsAuthenticated(token);
         if (hasToken)
         {
-            withdrawModel.UserID = Service.User.CurrentUser.Id;
+            withdrawModel.UserID = User.CurrentUser.Id;
             string result = await Withdraw.Save(withdrawModel);
             if (!string.IsNullOrEmpty(result))
             {
